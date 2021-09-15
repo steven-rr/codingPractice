@@ -1,0 +1,6 @@
+name: standard
+channels:
+  - defaults
+dependencies:
+  - python
+  - pandas
