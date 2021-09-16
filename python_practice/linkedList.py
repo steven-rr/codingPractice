@@ -64,6 +64,9 @@ class linkedList:
             current = current.next
 
 def main():
+    '''
+    main()  unit tests the linkedList.
+    '''
     # initalize linked list
     list1 = linkedList()
     list1.append("mon")
@@ -101,9 +104,6 @@ def main():
     print(list1.head.next.data)
     print(list1.head.next.next.data)
     print(list1.head.next.next.next.data)
-    
+
 if __name__ == "__main__":
-    print("linkedList.py is being run directly")
     main()
-else:
-    print("linkedList.py is being imported into another module")
