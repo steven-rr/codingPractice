@@ -4,10 +4,13 @@ class maxheap:
     implements max heap: 
     '''
     def __init__(self, maxsize):
+        '''
+            initialize an empty max heap with a max size.
+        '''
         self.size = 0
         self.maxsize = maxsize
         self.Heap = [0] * (self.maxsize + 1)
-
+        self.root = 1
     def parent(self, pos):
         return pos // 2
     
@@ -43,8 +46,37 @@ class maxheap:
                 else:
                     self.swap(pos, self.rightChild(pos))
                     self.maxHeapify(self.rightChild(pos))
+
+    def buildMaxHeap(self, array):
+        '''
+        -Initialize with unsorted array.
+        -Overwrite current data with array being inputted. 
+        '''
+        # clear out nodes and reinitialize variables
+        self.size = len(array)
+        self.Heap = [0] * (self.maxsize + 1)
+
+        # set elements inside of heap, unsorted.
+        for i in range(1, self.size + 1):
+            self.Heap[i] = array[i]
+
+        # create a max heap.
+        for i in range(self.size//2, 0, -1):
+            self.maxHeapify(i)
+
+    def Print(self):
+        '''
+            Function to print the contents of the heap
+        '''
+        for i in range(1, (self.size // 2) + 1):
+            print(" PARENT : " + str(self.Heap[i]) + 
+                  " LEFT CHILD : " + str(self.Heap[2 * i]) +
+                  " RIGHT CHILD : " + str(self.Heap[2 * i + 1]))
 def main ():
-    print("hi")
+    maxheap1= maxheap(100)
+    list1 = [6,1,5,3,7,4,9,8,10]
+    maxheap1.buildMaxHeap(list1)
+    maxheap1.Print()
 if __name__ == "__main__":
     main()
 
