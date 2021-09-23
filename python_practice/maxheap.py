@@ -21,13 +21,30 @@ class maxheap:
         return 2*pos + 1
     
     def isLeaf(self,pos):
-        if pos>= (self.size//2) and pos <= self.size:
+        if pos> (self.size//2) and pos <= self.size:
             return True
         return False
 
     def swap(self, pos1,pos2):
         self.Heap[pos1], self.Heap[pos2] = (self.Heap[pos2],self.Heap[pos1])
     
+    def insert(self, element):
+        '''
+        inserting child into a max heap and then maintaining the max heap.
+        '''
+        # if exceeds max size, don't insert. else, do insert.
+        if self.size>= self.maxsize:
+            return
+        self.size = self.size + 1
+        self.Heap[self.size] = element
+
+        # note down index of appended element.
+        idx_element = self.size
+
+        # while appended element is bigger than its parents, swap with parents.
+        while( self.Heap[idx_element] > self.Heap[self.parent(idx_element)]):
+            self.swap(idx_element, self.parent(idx_element))
+            idx_element = self.parent(idx_element)
     def maxHeapify(self, pos):
         '''
         Function to maxheapify node at position "pos".
@@ -46,6 +63,7 @@ class maxheap:
                 else:
                     self.swap(pos, self.rightChild(pos))
                     self.maxHeapify(self.rightChild(pos))
+       
 
     def buildMaxHeap(self, array):
         '''
@@ -58,12 +76,12 @@ class maxheap:
 
         # set elements inside of heap, unsorted.
         for i in range(1, self.size + 1):
-            self.Heap[i] = array[i]
+            self.Heap[i] = array[i-1]
 
         # create a max heap.
         for i in range(self.size//2, 0, -1):
             self.maxHeapify(i)
-
+            
     def Print(self):
         '''
             Function to print the contents of the heap
