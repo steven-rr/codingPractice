@@ -1,6 +1,6 @@
 
 import math
-
+import maxheap 
 def merge(list, begin, mid, end):
     '''
         Does merging by finger point algorithm.
@@ -111,6 +111,24 @@ def insertion_sort(list_unsorted):
 
     return list_sorted
 
+def heap_sort(list_unsorted):
+    list_sorted = []
+
+    maxheap1=maxheap.maxheap(100)
+    # build max heap from unordered array.
+    maxheap1.buildMaxHeap(list_unsorted)
+    for i in range(0,len(list_unsorted)):
+        # swap element A[n] and A[1]. Note A[n] is the max after the swap.
+        maxheap1.swap(1, maxheap1.size)
+        # add A[n] to list:
+        list_sorted.append(maxheap1.Heap[maxheap1.size])
+        # discard node "n" by decrementing heap-size variable and setting element to zero.
+        maxheap1.Heap[maxheap1.size] = 0
+        maxheap1.size = maxheap1.size-1
+        # new root may violate max heap, run maxheapify to fix this.
+        maxheap1.maxHeapify(1)
+    print(list_unsorted)
+    print(list_sorted)
 def main():
     ''' 
     Here I'll study different sorting algos. 
@@ -138,17 +156,19 @@ def main():
         
     '''
     # define unsorted array.
-    list1 = [5,2,4,6,1,3,10,52364, 12,2,34,1235,2]
-    # apply insertion sort and print results.
-    list2 = insertion_sort(list1)
-    print(list1)
-    print("sorted list with insertion sort: " , list2)
-    print(" ")
-    
-    # apply merge sort and print results.
-    print(list1)
-    merge_sort(list1, 0 , len(list1) - 1)
-    print("sorted list with merge sort: " , list1)
+    list1 = [5,4,6,1,3,10,52364, 12,34,1235,2]
+    list2 = [1,2]
 
+    # # apply insertion sort and print results.
+    # list2 = insertion_sort(list1)
+    # print(list1)
+    # print("sorted list with insertion sort: " , list2)
+    # print(" ")
+    
+    # # apply merge sort and print results.
+    # print(list1)
+    # merge_sort(list1, 0 , len(list1) - 1)
+    # print("sorted list with merge sort: " , list1)
+    heap_sort(list1)
 if __name__ == "__main__":
     main()
