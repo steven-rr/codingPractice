@@ -157,7 +157,6 @@ def main():
     '''
     # define unsorted array.
     list1 = [5,4,6,1,3,10,52364, 12,34,1235,2]
-    list2 = [1,2]
 
     # # apply insertion sort and print results.
     # list2 = insertion_sort(list1)
@@ -169,6 +168,7 @@ def main():
     # print(list1)
     # merge_sort(list1, 0 , len(list1) - 1)
     # print("sorted list with merge sort: " , list1)
+    
     heap_sort(list1)
 if __name__ == "__main__":
     main()
