@@ -10,7 +10,7 @@ TODO:
         -Hash Tables (** very important)
     -Algorithms:
         -Breadth First Search
-        -Depth First Sarch
+        -Depth First Search
         -Binary Search
         -Merge Sort
         -Quick Sort
